@@ -1,0 +1,36 @@
+@import "../../styling/Colors";
+
+.modal__wrap {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0, .4);
+    position: fixed;
+    top: 0;
+
+    
+}
+.modal__inner {
+    display: block;
+    width: 70%;
+    height: 70%;
+
+    min-width: 400px;
+    min-height: 400px;
+
+    background-color: $lavender-web;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    padding: 30px;
+    box-sizing: border-box;
+
+    border-radius: 20px;
+}
+.modal__hide {
+    display: none;
+}

@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter,
+  useHistory,
+  useLocation,
+  Route,
+} from "react-router-dom";
+import "./App.css";
+import Nav from "./components/Navigation/Nav";
+import { fetchData, useLoggedIn } from "./util";
+import Homepage from "./views/Home/Home";
+import Login from "./views/Login";
 function App() {
+  const [img, setImg] = useState("");
+  const [userData, setUser] = useState({})
+
+  const history = useHistory();
+  console.log(window.location?.pathname);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+      
+        <Route path="/">
+          {window.location?.pathname !== "/login" && <Nav />}
+        </Route>
+
+        <Route exact path="/">
+          <Homepage />
+        </Route>
+
+        <Route path="/login">
+          <Login />
+        </Route>
+      </BrowserRouter>
+    </>
   );
 }
 

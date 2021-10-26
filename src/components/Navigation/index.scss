@@ -1,0 +1,49 @@
+@import "../../styling/Flex";
+@import "../../styling/Colors";
+.navigation {
+    display: flex;
+    flex-direction: row;
+
+    width: 100vw;
+    height: 70px;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: {
+        left: 30px;
+        right: 30px;
+    }
+
+    box-sizing: border-box;
+    
+    .nav__single {
+        &:hover {
+            text-shadow: 2px 2px 2px rgba(150, 150, 150, 0.32);
+        }
+    }
+
+    a {
+        width: fit-content;
+        color: $xiketic;
+        text-decoration: none; 
+
+        
+        .nav__items--profile{
+
+            @include row;
+            justify-content: space-between;
+            align-items: center;
+
+            img {
+                width: 50px;
+                height: 50px;
+                
+                border-radius: 25px;
+            }
+            span {
+                margin-right: 20px;
+            }
+        }
+    }
+}
