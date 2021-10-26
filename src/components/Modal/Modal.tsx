@@ -20,7 +20,9 @@ const Modal: FC<Modal> = ({ isOpen, setOpen }) => {
         <h2>Add a new item</h2>
 
         <input type='text' onKeyDown={(ev:React.KeyboardEvent<HTMLInputElement>)=> {ev.key === 'Enter' && fetchData(ev.currentTarget.value).then(data => setProd(data))}}/>
-        <img src={prod?.image && prod.image}/>
+        <button onClick={(ev:React.MouseEvent<HTMLButtonElement>)=> {fetchData(ev?.currentTarget?.parentElement?.querySelector("input")?.value!).then(data => setProd(data))} }> Find product</button>
+        <img className='prod__img' src={prod?.image && prod.image}/>
+        <span>{prod?.store && prod.store}</span>
 
       </div>
     </>
