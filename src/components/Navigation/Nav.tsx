@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useLoggedIn } from "../../util";
+import { fetchLoggedIn } from "../../util";
 import "./index.scss";
 
 interface User {
@@ -11,10 +11,10 @@ interface User {
 }
 const Nav: FC = () => {
   const history = useHistory();
-  const loggedUser = useLoggedIn();
   const [loggedIn, setUser] = useState<User | undefined>();
   useEffect(() => {
-    loggedUser.then((data) => setUser(data as User));
+    const id = document.cookie.split("USER_id=")[1]
+    fetchLoggedIn(id).then((data) => setUser(data as User));
     if (!loggedIn) {
       history.push("/login");
     }

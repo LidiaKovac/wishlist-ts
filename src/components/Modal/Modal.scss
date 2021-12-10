@@ -1,4 +1,5 @@
 @import "../../styling/Colors";
+@import "../../styling/Flex";
 
 .modal__wrap {
     display: block;
@@ -11,7 +12,7 @@
     
 }
 .modal__inner {
-    display: block;
+    @include col;
     width: 70%;
     height: 70%;
 
@@ -30,6 +31,31 @@
     box-sizing: border-box;
 
     border-radius: 20px;
+    .inputs {
+        @include row;
+        input {
+            width: 70%;
+            border-radius: 50px;
+            border: none;
+        }
+        button {
+            width: 15%;
+            margin-left: 40px;
+            border: none;
+            padding: 10px;
+            background-color: $indian-red;
+            border-radius: 50px;
+        }
+    }
+    .prod__info {
+        @include row;
+        margin-top: 30px;
+        .prod__img {
+            width: 30%;
+            height: auto;
+            margin-left: 20px;
+        }
+    }
 }
 .modal__hide {
     display: none;

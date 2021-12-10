@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router";
-import { useLoggedIn } from "../../util";
+import { fetchLoggedIn } from "../../util";
 import "./login.scss";
 
 const Login = ()=> {
-    const logged = useLoggedIn()
+    
     const history = useHistory()
     useEffect(()=> {
-        logged.then((data)=> {
+        const id = document.cookie.split("USER_id=")[1]
+        fetchLoggedIn(id).then((data)=> {
             if (data) {
                history.push("/")
             }

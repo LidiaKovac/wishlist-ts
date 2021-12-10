@@ -1,0 +1,51 @@
+@import "../../styling/Flex", "../../styling/Colors";
+
+.home__wrap {
+  padding: {
+    left: 10%;
+    right: 10%;
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  .prod__info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .inputs {
+    width: 50%;
+    @include row;
+    margin: 5px;
+    input {
+      width: 100%;
+      height: 60px;
+      border-radius: 50px;
+      //   border: 1px grey solid;
+      background-color: $lavender-web;
+      border: none;
+      padding-left: 30px;
+      font-size: 15pt;
+    }
+    button {
+      margin-left: -63px;
+      height: 62px;
+      width: 62px;
+      border-radius: 62px;
+      border: none;
+      background-color: transparent;
+      font-size: 18pt;
+      cursor: pointer;
+      padding: 0;
+      margin-right: 0;
+    }
+  }
+}
