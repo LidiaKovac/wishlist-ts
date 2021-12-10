@@ -1,6 +1,7 @@
 import { Product, User } from "../classes"
 //API
 const id = document.cookie.split("USER_id=")[1]
+// Fetch data
 export const fetchData = async (query: string): Promise<any> => {
     try {
         
@@ -18,6 +19,7 @@ export const fetchData = async (query: string): Promise<any> => {
     }
 }
 
+//add-delete favs
 export const handleFavsApi = async(action:string, pid:number) => {
     try {
         console.log(pid);
@@ -37,12 +39,15 @@ export const handleFavsApi = async(action:string, pid:number) => {
     }
 }
 
+//returns true is the user has added the product to favs
 export const checkFavs = (user:User, id:number):boolean => {
         let {favs} = user
         if (favs.includes(id)) {
             return true
         } else return false
 }
+
+//gives back the array of favs
 
 // HOOKS 
 
@@ -57,3 +62,4 @@ export const fetchLoggedIn = async (cookieId:string) => {
 
     } else return false
 }
+
