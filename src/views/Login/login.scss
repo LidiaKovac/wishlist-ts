@@ -1,0 +1,63 @@
+@import "../../styling/Colors";
+@import "../../styling/Flex";
+
+
+.login__wrap {
+  background-color: $lavender-web;
+
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+
+  @include col;
+  @include center;
+
+  h1 {
+    color: $xiketic;
+    font-size: 70pt;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    color: $xiketic;
+  }
+
+  .login__inner {
+    width: 20%;
+    min-width: 350px;
+    height: 10%;
+    min-height: 200px;
+    border-radius: 10px;
+
+    background-color: white;
+
+    @include col;
+    @include center;
+
+    a {
+      width: 90%;
+      height: 50px;
+      background-color: $lavender-web;
+      color: $xiketic;
+      -webkit-box-shadow: 7px 7px 11px -1px rgb(0 0 0 / 15%);
+      box-shadow: 7px 7px 11px -1px rgb(0 0 0 / 15%);
+
+      border-radius: 25px;
+
+      @include row;
+      @include center;
+      text-decoration: none;
+
+      img {
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+      }
+
+      &:hover {
+        transform: translate(-2px, -2px);
+        transition: .5s;
+      }
+    }
+  }
+}

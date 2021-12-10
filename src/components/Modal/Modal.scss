@@ -1,0 +1,62 @@
+@import "../../styling/Colors";
+@import "../../styling/Flex";
+
+.modal__wrap {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0, .4);
+    position: fixed;
+    top: 0;
+
+    
+}
+.modal__inner {
+    @include col;
+    width: 70%;
+    height: 70%;
+
+    min-width: 400px;
+    min-height: 400px;
+
+    background-color: $lavender-web;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    padding: 30px;
+    box-sizing: border-box;
+
+    border-radius: 20px;
+    .inputs {
+        @include row;
+        input {
+            width: 70%;
+            border-radius: 50px;
+            border: none;
+        }
+        button {
+            width: 15%;
+            margin-left: 40px;
+            border: none;
+            padding: 10px;
+            background-color: $indian-red;
+            border-radius: 50px;
+        }
+    }
+    .prod__info {
+        @include row;
+        margin-top: 30px;
+        .prod__img {
+            width: 30%;
+            height: auto;
+            margin-left: 20px;
+        }
+    }
+}
+.modal__hide {
+    display: none;
+}
