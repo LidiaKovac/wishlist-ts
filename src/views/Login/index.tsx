@@ -8,8 +8,8 @@ const Login = ()=> {
     const history = useNavigate()
     useEffect(()=> {
         const id = document.cookie.split("USER_id=")[1]
-        console.log(id.length);
-        if (id.length > 0) {
+        console.log(id?.length);
+        if (id && id.length > 0) {
             fetchLoggedIn(id).then((data)=> {
                 if(data) {
                     history("/")

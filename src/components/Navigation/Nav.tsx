@@ -13,18 +13,20 @@ const Nav: FC = () => {
   // const history = useNavigate();
   const [loggedIn, setUser] = useState<User | undefined>();
   useEffect(() => {
-    const id = document.cookie.split("USER_id=")[1]
-    fetchLoggedIn(id).then((data) => {
-      if(data)  setUser(data as User)})
-      
+    const cookie = document.cookie.split("USER_id=")[1];
+    if (cookie && cookie?.length > 0) {
+    fetchLoggedIn(cookie).then((data) => {
+      if (data) setUser(data as User);
+    });
+  }
   }, []);
   return (
     <>
       <div className="navigation">
         <div className="nav__items">
-            <Link to='/'>
-          <div className="nav__single">Home</div>
-            </Link>
+          <Link to="/">
+            <div className="nav__single">Home</div>
+          </Link>
         </div>
         <Link to="/manage">
           <div className=" nav__single nav__items--profile">

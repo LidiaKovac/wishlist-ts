@@ -39,7 +39,7 @@ const Homepage = () => {
   useEffect(() => {
     let cookie = document.cookie.split("USER_id=")[1];
     console.log(cookie);
-    if (cookie.length === 0) {
+    if (!cookie || cookie?.length === 0) {
       history("/login");
     } else {
       fetchLoggedIn(cookie).then((res)=> setUser(res))
