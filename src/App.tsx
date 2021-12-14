@@ -1,29 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, useHistory, useLocation, Route } from "react-router-dom";
+import { BrowserRouter as Router, useNavigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Navigation/Nav";
 import Homepage from "./views/Home/Home";
 import Login from "./views/Login";
+import { Profile } from "./views/Profile/Profile";
 function App() {
   const [img, setImg] = useState("");
   const [userData, setUser] = useState({});
 
-  const history = useHistory();
+
   console.log(window.location?.pathname);
 
   return (
     <>
-      <BrowserRouter>
-        <Route path="/">{window.location?.pathname !== "/login" && <Nav />}</Route>
+      <Router>
+        <Nav/>
+        <Routes>
+          {/* {window.location?.pathname !== "/login" && <Nav />} */}
 
-        <Route exact path="/">
-          <Homepage />
-        </Route>
+          <Route index element={<Homepage />}/>
 
-        <Route path="/login">
-          <Login />
-        </Route>
-      </BrowserRouter>
+          <Route path="login" element={<Login />}/>
+
+          <Route path="manage" element={<Profile />}/>
+
+        </Routes>
+      </Router>
     </>
   );
 }

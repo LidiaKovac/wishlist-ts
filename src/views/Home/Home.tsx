@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { Product, User } from "../../classes";
 import { SingleProduct } from "../../components/SingleProduct/Single";
 import { Toast } from "../../components/Toast/Toast";
@@ -10,7 +10,7 @@ import { checkFavs, fetchData, fetchLoggedIn } from "../../util";
 import "./Home.scss";
 
 const Homepage = () => {
-  const history = useHistory();
+  const history = useNavigate();
   // const [favs, setFavs] = useState([]);
   // const [isModalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -39,8 +39,8 @@ const Homepage = () => {
   useEffect(() => {
     let cookie = document.cookie.split("USER_id=")[1];
     console.log(cookie);
-    if (!cookie) {
-      history.push("/login");
+    if (cookie.length === 0) {
+      history("/login");
     } else {
       fetchLoggedIn(cookie).then((res)=> setUser(res))
     }

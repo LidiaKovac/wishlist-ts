@@ -1,19 +1,29 @@
 import { useEffect } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { fetchLoggedIn } from "../../util";
 import "./login.scss";
 
 const Login = ()=> {
     
-    const history = useHistory()
+    const history = useNavigate()
     useEffect(()=> {
         const id = document.cookie.split("USER_id=")[1]
-        fetchLoggedIn(id).then((data)=> {
-            if (data) {
-               history.push("/")
-            }
-        })
-    })
+        console.log(id.length);
+        if (id.length > 0) {
+            fetchLoggedIn(id).then((data)=> {
+                if(data) {
+                    history("/")
+                }
+            })
+        }
+        // if(String(id).length > 0) {
+        //     fetchLoggedIn(id).then((data)=> {
+        //         if (data) {
+        //             history("/")
+        //         }
+        //     })
+        // }
+    }, [])
     return (<>
     <div className="login__wrap">
         <h1>Wishlist.</h1>
