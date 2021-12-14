@@ -10,7 +10,7 @@ function App() {
   const [userData, setUser] = useState({});
 
 
-  console.log(window.location?.pathname);
+  
 
   return (
     <>

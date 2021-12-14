@@ -16,7 +16,7 @@ const Homepage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState<string>("");
-  const [user, setUser] = useState<User>()
+  const [user, setUser] = useState<User>();
   const [prods, setProds] = useState<Array<Product>>();
   const [toastList, setToastList] = useState<Array<string>>([]);
   const findProduct = (ev: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>) => {
@@ -42,7 +42,7 @@ const Homepage = () => {
     if (!cookie || cookie?.length === 0) {
       history("/login");
     } else {
-      fetchLoggedIn(cookie).then((res)=> setUser(res))
+      fetchLoggedIn(cookie).then((res) => setUser(res));
     }
 
     //fetch existing favs
@@ -74,7 +74,14 @@ const Homepage = () => {
         ) : !error ? (
           <div className="prod__info">
             {prods?.length! > 0 &&
-              prods?.map((p, i) => <SingleProduct product={p} key={i} isFavAlready={checkFavs(user!, Number(p.prod_id))} createToast={(title: string, action: string) => setToastList((old) => [...old, action])} />)}
+              prods?.map((p, i) => (
+                <SingleProduct
+                  product={p}
+                  key={i}
+                  isFavAlready={checkFavs(user!, Number(p.prod_id))}
+                  createToast={(title: string, action: string) => setToastList((old) => [...old, action])}
+                />
+              ))}
           </div>
         ) : (
           "Error!"

@@ -24,13 +24,13 @@ export const SingleProduct: FC<SingleProps> = ({ product, createToast, isFavAlre
   return (
     <>
       <div
-        className="single_product"
+        className={window.location?.pathname === '/manage' ? " single_product single_product--manage" : "single_product"}
         onMouseOver={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)  }
       >
         {/* <h2>{product.name}</h2> */}
         <img src={product.images[0]} alt={product.name} />
-        {isHovered && <div > {!isFav ? <AiOutlineHeart onClick={() => handleFavs("added to")} /> : <AiFillHeart onClick={() => handleFavs("removed from")}/>} </div>}
+        {window.location?.pathname === '/manage' || isHovered && <div > {!isFav ? <AiOutlineHeart onClick={() => handleFavs("added to")} /> : <AiFillHeart onClick={() => handleFavs("removed from")}/>} </div>}
       </div>
     </>
   );

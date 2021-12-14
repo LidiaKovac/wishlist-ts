@@ -35,12 +35,8 @@
         right: 50%;
         transform: translate(50%, -50%);
     }
-    
-    // h2 {
-    //     font-size: 13pt;
-    //     width: 100%;
-    //     text-overflow: ellipsis;
-    //     overflow: hidden;
-    //     white-space: nowrap;
-    // }
+}
+
+.single_product--manage:hover img {
+    opacity: 1;
 }
