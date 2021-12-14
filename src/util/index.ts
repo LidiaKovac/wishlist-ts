@@ -1,3 +1,4 @@
+import { cookie } from "request"
 import { Product, User } from "../classes"
 //API
 const id = document.cookie.split("USER_id=")[1]
@@ -8,11 +9,7 @@ export const fetchData = async (query: string): Promise<any> => {
         let res = await fetch(process.env.REACT_APP_BE_URL + "/api/store/" + query)
         if (res.ok) {
             let json = await res.json()
-            let manipulatedJson = json.map((j:{name: string, images: string, query: string}) => {
-                let images = j.images?.split(",").map(im =>  im.replace("wid=40", "wid=600")) //from string, creates array of images
-                return {...j, images}
-            })
-            return {data: manipulatedJson, status: 200}
+            return {data: json, status: 200}
         } else return {status: res.status}
     } catch (error) {
      console.error(error)   
@@ -48,6 +45,11 @@ export const checkFavs = (user:User, id:number):boolean => {
 }
 
 //gives back the array of favs
+export const getFavs = async(userId:string) => {
+    let raw = await fetch(`${process.env.REACT_APP_BE_URL}/api/user/favs?id=${userId}`)
+    let {favs} = await raw.json()
+    return favs
+}
 
 // HOOKS 
 
