@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Product, User } from "../../classes";
+// import { Product, User } from "../../classes";
 import { SingleProduct } from "../../components/SingleProduct/Single";
 import { checkFavs, fetchLoggedIn, getFavs } from "../../util";
 import "./Profile.scss";

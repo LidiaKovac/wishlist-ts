@@ -1,28 +1,23 @@
 import { useEffect } from "react";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { fetchLoggedIn } from "../../util";
 import "./login.scss";
 
 const Login = ()=> {
-    
+    const [cookies, setCookie] = useCookies();
     const history = useNavigate()
     useEffect(()=> {
-        const id = document.cookie.split("USER_id=")[1]
-        console.log(id?.length);
-        if (id && id.length > 0) {
+        let id:string = cookies['USER_id']
+        console.log(id.length);
+        
+        if (id && id.length > 4) {
             fetchLoggedIn(id).then((data)=> {
                 if(data) {
                     history("/")
                 }
             })
         }
-        // if(String(id).length > 0) {
-        //     fetchLoggedIn(id).then((data)=> {
-        //         if (data) {
-        //             history("/")
-        //         }
-        //     })
-        // }
     }, [])
     return (<>
     <div className="login__wrap">

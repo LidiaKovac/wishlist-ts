@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import Loader from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
-import { Product, User } from "../../classes";
+// import { Product, User } from "../../classes";
 import { SingleProduct } from "../../components/SingleProduct/Single";
 import { Toast } from "../../components/Toast/Toast";
 // import Modal from "../../components/Modal/Modal";
@@ -19,6 +20,7 @@ const Homepage = () => {
   const [user, setUser] = useState<User>();
   const [prods, setProds] = useState<Array<Product>>();
   const [toastList, setToastList] = useState<Array<string>>([]);
+  const [cookies, setCookie] = useCookies();
   const findProduct = (ev: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>) => {
     setLoading(true);
     // if (ev.type === "Mouse")
@@ -37,12 +39,13 @@ const Homepage = () => {
       .finally(() => setLoading(false));
   };
   useEffect(() => {
-    let cookie = document.cookie.split("USER_id=")[1];
-    console.log(cookie);
-    if (!cookie || cookie?.length === 0) {
+    let id = new URLSearchParams(window.location.search).get("id")
+    setCookie('USER_id', id, {maxAge: 172800})
+    console.log("from url", id);
+    if (!id || id?.length === 0) {
       history("/login");
     } else {
-      fetchLoggedIn(cookie).then((res) => setUser(res));
+      fetchLoggedIn(id).then((res) => setUser(res));
     }
 
     //fetch existing favs

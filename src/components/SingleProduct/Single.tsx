@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { Product } from "../../classes";
+// import { Product } from "../../classes";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import "./Single.scss";
 import { checkFavs, handleFavsApi } from "../../util";

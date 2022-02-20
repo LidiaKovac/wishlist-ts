@@ -1,28 +1,26 @@
 import React, { FC, useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import { fetchLoggedIn } from "../../util";
 import "./index.scss";
 
-interface User {
-  name: string;
-  googleID: string;
-  propic: string;
-  favs: Array<any>;
-}
+
 const Nav: FC = () => {
   // const history = useNavigate();
+  const [cookies] = useCookies()
   const [loggedIn, setUser] = useState<User | undefined>();
+  const cookie = cookies['USER_id'];
   useEffect(() => {
-    const cookie = document.cookie.split("USER_id=")[1];
-    if (cookie && cookie?.length > 0) {
+    
+    if (cookie && cookie?.length > 4) {
     fetchLoggedIn(cookie).then((data) => {
       if (data) setUser(data as User);
     });
   }
-  }, []);
+  }, [cookie]);
   return (
-    <>
-      <div className="navigation">
+     <>
+      {window.location.pathname !== "/login" && <div className="navigation">
         <div className="nav__items">
           <Link to="/">
             <div className="nav__single">Home</div>
@@ -34,7 +32,7 @@ const Nav: FC = () => {
             <img src={loggedIn?.propic || "/assets/propicph.jpg"} alt="" />
           </div>
         </Link>
-      </div>
+      </div>}
     </>
   );
 };

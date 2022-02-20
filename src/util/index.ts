@@ -1,5 +1,5 @@
-import { cookie } from "request"
-import { Product, User } from "../classes"
+
+// import { Product, User } from "../classes"
 //API
 const id = document.cookie.split("USER_id=")[1]
 // Fetch data
@@ -54,9 +54,9 @@ export const getFavs = async(userId:string) => {
 // HOOKS 
 
 export const fetchLoggedIn = async (cookieId:string) => {
-    if (cookieId) {
-        
+    if (cookieId && cookieId !== null) {
         let raw = await fetch(`${process.env.REACT_APP_BE_URL}/api/user/me?id=${cookieId}`)
+        
         let userData = await raw.json()
         console.log(userData);
 
