@@ -9,7 +9,7 @@ const Login = ()=> {
     const history = useNavigate()
     useEffect(()=> {
         let id:string = cookies['USER_id']
-        console.log(id.length);
+        console.log(id?.length);
         
         if (id && id.length > 4) {
             fetchLoggedIn(id).then((data)=> {

@@ -1,15 +1,16 @@
 
-// import { Product, User } from "../classes"
 //API
 const id = document.cookie.split("USER_id=")[1]
 // Fetch data
-export const fetchData = async (query: string): Promise<any> => {
+export const fetchData = async (query: string, page:number): Promise<any> => {
     try {
         
-        let res = await fetch(process.env.REACT_APP_BE_URL + "/api/store/" + query)
+        let res = await fetch(process.env.REACT_APP_BE_URL + "/api/store/?query=" + query + "&page=" + page)
         if (res.ok) {
-            let json = await res.json()
-            return {data: json, status: 200}
+            let {products} = await res.json()
+            console.log(products);
+            
+            return {data: products, status: 200}
         } else return {status: res.status}
     } catch (error) {
      console.error(error)   
@@ -17,10 +18,8 @@ export const fetchData = async (query: string): Promise<any> => {
 }
 
 //add-delete favs
-export const handleFavsApi = async(action:string, pid:number) => {
+export const handleFavsApi = async(action:string, pid:string) => {
     try {
-        console.log(pid);
-        
         
         let result = await fetch(`${process.env.REACT_APP_BE_URL}/api/user/favs?action=${action}&id=${id}`, {
             method: "PUT",
@@ -30,7 +29,7 @@ export const handleFavsApi = async(action:string, pid:number) => {
             })
         })
         let user = await result.json()
-        console.log(user)
+        // console.log(user)
     } catch (error) {
         console.error(error)
     }

@@ -26,7 +26,7 @@ const Homepage = () => {
     // if (ev.type === "Mouse")
     console.log(query);
 
-    fetchData(query)
+    fetchData(query, 1)
       .then(({ data, status }) => {
         console.log(status);
 
@@ -39,13 +39,18 @@ const Homepage = () => {
       .finally(() => setLoading(false));
   };
   useEffect(() => {
-    let id = new URLSearchParams(window.location.search).get("id")
-    setCookie('USER_id', id, {maxAge: 172800})
-    console.log("from url", id);
-    if (!id || id?.length === 0) {
+    let id: string | null = new URLSearchParams(window.location.search).get("id");
+    if (id !== null) { //if the id is in the url
+      setCookie("USER_id", id, { maxAge: 172800 });
+      fetchLoggedIn(id).then(foundUser => setUser(foundUser))
+      console.log(2);
+      
+    } else if (cookies["USER_id"] !== undefined) { //if the id is in the cookies already
+      fetchLoggedIn(cookies["USER_id"]).then(foundUser => setUser(foundUser))
+      console.log(cookies["USER_id"]);
+      
+    } else { //if the id is not anywhere
       history("/login");
-    } else {
-      fetchLoggedIn(id).then((res) => setUser(res));
     }
 
     //fetch existing favs
@@ -81,7 +86,7 @@ const Homepage = () => {
                 <SingleProduct
                   product={p}
                   key={i}
-                  isFavAlready={checkFavs(user!, Number(p.prod_id))}
+                  isFavAlready={user!.favs && checkFavs(user!, Number(p.prod_id))}
                   createToast={(title: string, action: string) => setToastList((old) => [...old, action])}
                 />
               ))}

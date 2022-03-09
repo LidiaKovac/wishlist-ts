@@ -18,7 +18,7 @@ export const SingleProduct: FC<SingleProps> = ({ product, createToast, isFavAlre
 
   const handleFavs = (action:string) => {
     setIsFav(favStatus => !favStatus)
-    handleFavsApi(isFav ? "remove" : "add", Number(product.prod_id))
+    handleFavsApi(isFav ? "remove" : "add", product.prod_id)
     createToast(product.name, action)
   }
   return (
