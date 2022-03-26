@@ -2,19 +2,38 @@
 //API
 const id = document.cookie.split("USER_id=")[1]
 // Fetch data
-export const fetchData = async (query: string, page:number): Promise<any> => {
+export const fetchData = async (query: string, page:number): Promise<ApiResponse> => {
+    let prods = []
     try {
         
         let res = await fetch(process.env.REACT_APP_BE_URL + "/api/store/?query=" + query + "&page=" + page)
         if (res.ok) {
             let {products} = await res.json()
             console.log(products);
-            
+            prods = products
             return {data: products, status: 200}
-        } else return {status: res.status}
+        } else return {status: res.status, data: []}
     } catch (error) {
      console.error(error)   
     }
+    return prods
+}
+
+export const fetchSingle = async (id:string): Promise<ApiResponse> => {
+    let prods = []
+    try {
+        let res = await fetch(process.env.REACT_APP_BE_URL + "/api/store/" + id)
+        if (res.ok) {
+            let products = await res.json()
+            console.log(products);
+            prods = products
+            
+            return {data: products, status: 200}
+        } else return {status: res.status, data: []}
+    } catch (error) {
+     console.error(error)   
+    }
+    return prods
 }
 
 //add-delete favs
@@ -36,7 +55,7 @@ export const handleFavsApi = async(action:string, pid:string) => {
 }
 
 //returns true is the user has added the product to favs
-export const checkFavs = (user:User, id:number):boolean => {
+export const checkFavs = (user:User, id:string):boolean => {
         let {favs} = user
         if (favs.includes(id)) {
             return true
@@ -57,7 +76,6 @@ export const fetchLoggedIn = async (cookieId:string) => {
         let raw = await fetch(`${process.env.REACT_APP_BE_URL}/api/user/me?id=${cookieId}`)
         
         let userData = await raw.json()
-        console.log(userData);
 
         return userData
 

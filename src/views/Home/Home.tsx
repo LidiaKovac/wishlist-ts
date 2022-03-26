@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import Loader from "react-loader-spinner";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 // import { Product, User } from "../../classes";
 import { SingleProduct } from "../../components/SingleProduct/Single";
@@ -27,13 +28,13 @@ const Homepage = () => {
     console.log(query);
 
     fetchData(query, 1)
-      .then(({ data, status }) => {
-        console.log(status);
+      .then((res) => {
+        let {data, status} = res
 
         if (status === 200 || status === 201) {
           setError("");
-          setProds(data);
-        } else setError(status);
+          setProds(data as Array<Product>);
+        } else setError(status!.toString());
       })
       .catch((e) => setError(e))
       .finally(() => setLoading(false));
@@ -83,12 +84,15 @@ const Homepage = () => {
           <div className="prod__info">
             {prods?.length! > 0 &&
               prods?.map((p, i) => (
+              
                 <SingleProduct
                   product={p}
                   key={i}
-                  isFavAlready={user!.favs && checkFavs(user!, Number(p.prod_id))}
+                  isFavAlready={user!.favs && checkFavs(user!, p.prod_id)}
+                  
                   createToast={(title: string, action: string) => setToastList((old) => [...old, action])}
-                />
+                  />
+                
               ))}
           </div>
         ) : (

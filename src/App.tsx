@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, useNavigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Navigation/Nav";
+import { Details } from "./views/Details/Details";
 import Homepage from "./views/Home/Home";
 import Login from "./views/Login";
 import { Profile } from "./views/Profile/Profile";
 function App() {
-  const [img, setImg] = useState("");
-  const [userData, setUser] = useState({});
+
 
 
   
@@ -25,6 +25,7 @@ function App() {
 
           <Route path="manage" element={<Profile />}/>
 
+          <Route path='details' element={<Details/>} />
         </Routes>
       </Router>
     </>

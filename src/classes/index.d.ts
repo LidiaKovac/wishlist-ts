@@ -11,5 +11,11 @@ interface User {
     name: string,
     googleID: string,
     propic: string,
-    favs: Array<number>
+    favs: Array<string>
+}
+
+
+interface ApiResponse {
+    status: number | undefined
+    data: Array<Product> | Product | undefined
 }

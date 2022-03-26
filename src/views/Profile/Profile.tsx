@@ -21,7 +21,7 @@ export const Profile = () => {
                   createToast={(title: string, action: string) => setToastList((old) => [...old, action])}
                 /> */}
     <div className="profile__wrap">
-        {favs?.map((fav,i) => <SingleProduct product={fav} key={i} isFavAlready={checkFavs(user!, Number(fav.prod_id)) } createToast={(title: string, action: string) => {}}  />)}
+        {favs?.map((fav,i) => <SingleProduct product={fav} key={i}  />)}
     </div>
   </>;
 };
