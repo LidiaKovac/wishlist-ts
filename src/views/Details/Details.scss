@@ -1,0 +1,12 @@
+@import "../../styling/Flex";
+
+.details__wrap {
+  margin-left: 5%;
+  margin-right: 5%;
+  .product__info {
+    @include row;
+    img {
+      width: 30%;
+    }
+  }
+}

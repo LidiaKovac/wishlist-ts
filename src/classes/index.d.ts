@@ -3,7 +3,8 @@ interface Product {
     images: Array<string>,
     url: string,
     prod_id: string,
-    internal_id: string
+    internal_id: string,
+    store?: string
 }
 
 interface User {

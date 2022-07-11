@@ -26,6 +26,12 @@ export const fetchSingle = async (id:string): Promise<ApiResponse> => {
         if (res.ok) {
             let products = await res.json()
             console.log(products);
+            products.store = products.url.includes("asos") ? "Asos" 
+                           : products.url.includes("aboutyou") ? "About You"
+                           : products.url.includes("hm") ? "HM"
+                           : products.url.includes("ovs") ? "OVS"
+                           : products.url.includes("shein") ? "Shein"
+                           : "Subdued"
             prods = products
             
             return {data: products, status: 200}
