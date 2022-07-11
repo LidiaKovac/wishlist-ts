@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Product, User } from "../../classes";
+// import { Product, User } from "../../classes";
 import { SingleProduct } from "../../components/SingleProduct/Single";
 import { checkFavs, fetchLoggedIn, getFavs } from "../../util";
 import "./Profile.scss";
@@ -21,7 +21,7 @@ export const Profile = () => {
                   createToast={(title: string, action: string) => setToastList((old) => [...old, action])}
                 /> */}
     <div className="profile__wrap">
-        {favs?.map((fav,i) => <SingleProduct product={fav} key={i} isFavAlready={checkFavs(user!, Number(fav.prod_id)) } createToast={(title: string, action: string) => {}}  />)}
+        {favs?.map((fav,i) => <SingleProduct product={fav} key={i}  />)}
     </div>
   </>;
 };
