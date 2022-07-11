@@ -57,8 +57,8 @@ const Homepage = () => {
     //fetch existing favs
   }, []);
   return (
-    <>
-      <div className="home__wrap">
+    <div className="home__wrap">
+        <header>ciao sono un header</header>
         {/* {favs.length > 0 ? <div>There are things in the favs</div> : <div>Looks like there's nothing to show. Why don't you start by <span onClick={()=> setModalOpen(!isModalOpen)}> adding </span> something? </div>} */}
         {/* <Modal isOpen={isModalOpen} setOpen={setModalOpen} /> */}
         {!prods && <h1> Are you feeling inspired today? </h1>}
@@ -82,6 +82,7 @@ const Homepage = () => {
           <Loader type="Hearts" color="#db5461" />
         ) : !error ? (
           <div className="prod__info">
+            <a href="#hello"></a>
             {prods?.length! > 0 &&
               prods?.map((p, i) => (
               
