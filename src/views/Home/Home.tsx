@@ -99,11 +99,11 @@ const Homepage = () => {
         ) : (
           "Error!"
         )}
-      </div>
       {toastList.map((action: string, i: number) => (
         <Toast key={i} message={`Product ${action} wishlist`} />
       ))}
-    </>
+      </div>
+   
   );
 };
 export default Homepage;
